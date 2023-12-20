@@ -42,7 +42,8 @@ def init():
     mkdir(args.TEST_RESULT_DIR)
     args.NETS_DIR = os.path.join(args.SAVE_PREFIX, args.EXP_NAME, 'net_checkpoints')
     os.environ["CUDA_VISIBLE_DEVICES"] = "%d" % args.GPU_ID
-    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    device = torch.device( "cuda:0")
 
     # random seed
     random.seed(args.SEED)
@@ -199,10 +200,12 @@ def main():
     DemoImgLoader = create_demo_dataset(args, data_path=test_path)
 
     # test demo
+
     demo_test(args, DemoImgLoader, model, save_path, device)
 
 
 if __name__ == '__main__':
+    print(torch.cuda.device_count())
     main()
 
 

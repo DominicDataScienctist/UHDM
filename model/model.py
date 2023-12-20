@@ -47,7 +47,7 @@ def model_fn_decorator(loss_fn, device, mode='train'):
 
         # save images
         if args.SAVE_IMG:
-            out_save = out_1.detach().cpu()
+            out_save = out_1.detach().cuda()
             torchvision.utils.save_image(out_save, save_path + '/' + 'test_%s' % number[0] + '.%s' % args.SAVE_IMG)
 
         return cur_psnr, cur_ssim, cur_lpips, cur_time
@@ -62,9 +62,9 @@ def model_fn_decorator(loss_fn, device, mode='train'):
 
         # save images
         if iters % args.SAVE_ITER == (args.SAVE_ITER - 1):
-            in_save = in_img.detach().cpu()
-            out_save = out_1.detach().cpu()
-            gt_save = label.detach().cpu()
+            in_save = in_img.detach().cuda()
+            out_save = out_1.detach().cuda()
+            gt_save = label.detach().cuda()
             res_save = torch.cat((in_save, out_save, gt_save), 3)
             save_number = (iters + 1) // args.SAVE_ITER
             torchvision.utils.save_image(res_save,
