@@ -9,7 +9,7 @@ from math import log10
 
 class create_metrics():
     """
-       We note that for different benchmarks, previous works calculate metrics in different ways, which might
+       We note that for different benchmarks, previous works calciulate metrics in different ways, which might
        lead to inconsistent SSIM results (and slightly different PSNR), and thus we follow their individual
        ways to compute metrics on each individual dataset for fair comparisons.
        For our 4K dataset, calculating metrics for 4k image is much time-consuming,
